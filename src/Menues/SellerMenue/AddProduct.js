@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { format } from "date-fns";
+import { addCommidites } from "../../api/addProduct";
 
 const AddProduct = () => {
   const [category, setCategory] = useState("");
@@ -11,6 +13,7 @@ const AddProduct = () => {
     const purchase_year = form.purchase_year.value;
     const phone = form.phone.value;
     const image = form.image.files[0];
+    const postedDate = format(new Date(), "PP");
     const formData = new FormData();
     formData.append("image", image);
     const url = `https://api.imgbb.com/1/upload?key=0cc7c5d9462483123e44c8df054d41da`;
@@ -30,7 +33,15 @@ const AddProduct = () => {
           phone,
           category,
           image: data.data?.display_url,
+          postedDate,
         };
+
+        // products added by seller
+        addCommidites(productInfo)
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((err) => console.log(err));
       });
 
     console.log();

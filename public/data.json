@@ -1,5 +1,6 @@
 [
   {
+    "category_id": 1,
     "postedTime": "NOV 11 22",
     "mainPrice": "$38",
     "resalePrice": "$20",
@@ -7,14 +8,85 @@
     "usedYears": 36,
     "seller_name": "Anisur Rahman",
     "verified": true,
-    "name": "House Roberts",
-    "categoryName": "Literatur",
+    "name": "Think And Grow Rich",
+    "categoryName": "literatur",
     "location": "Sylhet",
     "address": "186 Havens Place, Carlos, Kentucky, 9116",
-    "about": "Ut proident duis veniam excepteur nisi ad sunt proident. Ad consequat pariatur occaecat sint proident excepteur. Minim id cupidatat ullamco aliqua nostrud.\r\n"
+    "about": ""
+  },
+  {
+    "category_id": 2,
+    "postedTime": "Dec 01 22",
+    "mainPrice": "$50",
+    "resalePrice": "$30",
+    "picture": "http://placehold.it/32x32",
+    "usedYears": 2,
+    "seller_name": "Jibon Rahman",
+    "verified": false,
+    "name": "Eloquent JS",
+    "categoryName": "tecnical",
+    "location": "Dhaka",
+    "address": "186 Paradis Place, Carlos, Kentucky, 9116",
+    "about": ""
+  },
+  {
+    "category_id": 1,
+    "postedTime": "Jan 05 21",
+    "mainPrice": "$40",
+    "resalePrice": "$15",
+    "picture": "http://placehold.it/32x32",
+    "usedYears": 1,
+    "seller_name": "Ziaur Rahman",
+    "verified": true,
+    "name": "Gitanjoli",
+    "categoryName": "literature",
+    "location": "London",
+    "address": "186 King Bridge, Carlos, Kentucky, 9116",
+    "about": ""
+  },
+  {
+    "category_id": 2,
+    "postedTime": "Feb 06 22",
+    "mainPrice": "$100",
+    "resalePrice": "$50",
+    "picture": "http://placehold.it/32x32",
+    "usedYears": 2,
+    "seller_name": "Kabir Rahman",
+    "verified": true,
+    "name": "Hate Kolome Javascript",
+    "categoryName": "tecnical",
+    "location": "Moulvibazar",
+    "address": "186 Havens Place, Carlos, Kentucky, 9116",
+    "about": ""
+  },
+  {
+    "category_id": 5,
+    "postedTime": "NOV 11 22",
+    "mainPrice": "$38",
+    "resalePrice": "$20",
+    "picture": "http://placehold.it/32x32",
+    "usedYears": 36,
+    "seller_name": "Anisur Rahman",
+    "verified": true,
+    "name": "Think And Grow Rich",
+    "categoryName": "literatur",
+    "location": "Sylhet",
+    "address": "186 Havens Place, Carlos, Kentucky, 9116",
+    "about": ""
+  },
+  {
+    "category_id": 6,
+    "postedTime": "NOV 11 22",
+    "mainPrice": "$38",
+    "resalePrice": "$20",
+    "picture": "http://placehold.it/32x32",
+    "usedYears": 36,
+    "seller_name": "Anisur Rahman",
+    "verified": true,
+    "name": "Think And Grow Rich",
+    "categoryName": "literatur",
+    "location": "Sylhet",
+    "address": "186 Havens Place, Carlos, Kentucky, 9116",
+    "about": ""
   }
 ]
-
-// Each card will have a picture, name, location, resale price,
-// original price,
-// er e will be a blue tick next to their name and a Book now button
