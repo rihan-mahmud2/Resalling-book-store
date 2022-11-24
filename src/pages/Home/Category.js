@@ -61,7 +61,7 @@ const Category = () => {
             />
           </svg>
         </div>
-        <div className="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => (
             <SingleCategory category={category} key={category._id} />
           ))}

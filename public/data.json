@@ -1,0 +1,20 @@
+[
+  {
+    "postedTime": "NOV 11 22",
+    "mainPrice": "$38",
+    "resalePrice": "$20",
+    "picture": "http://placehold.it/32x32",
+    "usedYears": 36,
+    "seller_name": "Anisur Rahman",
+    "verified": true,
+    "name": "House Roberts",
+    "categoryName": "Literatur",
+    "location": "Sylhet",
+    "address": "186 Havens Place, Carlos, Kentucky, 9116",
+    "about": "Ut proident duis veniam excepteur nisi ad sunt proident. Ad consequat pariatur occaecat sint proident excepteur. Minim id cupidatat ullamco aliqua nostrud.\r\n"
+  }
+]
+
+// Each card will have a picture, name, location, resale price,
+// original price,
+// er e will be a blue tick next to their name and a Book now button

@@ -1,6 +1,6 @@
 import React from "react";
 
-const SingleCategory = () => {
+const SingleCategory = ({ category }) => {
   return (
     <div className="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
       <div className="p-5">
@@ -19,10 +19,9 @@ const SingleCategory = () => {
             />
           </svg>
         </div>
-        <p className="mb-2 font-bold">Football Sports</p>
+        <p className="mb-2 font-bold">{category?.category_name}</p>
         <p className="text-sm leading-5 text-gray-900">
-          Sed ut perspiciatis unde omnis iste. Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit.
+          {category?.description}
         </p>
       </div>
       <div className="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100" />
