@@ -1,22 +1,32 @@
 import SingleCategory from "./SingleCategory";
 
 const Category = () => {
+  // const [categories,setCategoris] = useState([]);
+
+  // useEffect(() => {
+
+  //   fetch("http://localhost:5000/product")
+  //   .then(res => res.json())
+  //   .then(data => )
+
+  //  },[])
+
   const categories = [
     {
       _id: 1,
-      category_name: "Literature",
+      category_name: "literature",
       description:
         "Intrinsicly reinvent cooperative niches whereas cross-unit leadership skills. Phosfluorescently actualize seamless intellectual capital vis-a-vis client-focused value. Professionally whiteboard process-centric initiatives with just in time intellectual capital.",
     },
     {
       _id: 2,
-      category_name: "Fictional Story",
+      category_name: "story",
       description:
         "Intrinsicly reinvent cooperative niches whereas cross-unit leadership skills. Phosfluorescently actualize seamless intellectual capital vis-a-vis client-focused value. Professionally whiteboard process-centric initiatives with just in time intellectual capital.",
     },
     {
       _id: 3,
-      category_name: "Tecnical",
+      category_name: "tecnical",
       description:
         "Intrinsicly reinvent cooperative niches whereas cross-unit leadership skills. Phosfluorescently actualize seamless intellectual capital vis-a-vis client-focused value. Professionally whiteboard process-centric initiatives with just in time intellectual capital.",
     },

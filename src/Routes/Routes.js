@@ -4,6 +4,7 @@ import Register from "../Login/Register";
 import SignUp from "../Login/SignUp";
 import Main from "../Main/Layout";
 import AddProduct from "../Menues/SellerMenue/AddProduct";
+import AllCategory from "../pages/Home/AllCategory";
 import Home from "../pages/Home/Home";
 import PrivateRoute from "./PrivateRoute";
 export const router = createBrowserRouter([
@@ -14,6 +15,12 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/category/:name",
+        element: <AllCategory />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/category/${params.name}`),
       },
       {
         path: "/register",
