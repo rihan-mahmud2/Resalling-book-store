@@ -3,6 +3,7 @@ import DashboardLayout from "../Dashboard/DashboardLayout";
 import Register from "../Login/Register";
 import SignUp from "../Login/SignUp";
 import Main from "../Main/Layout";
+import MyOrders from "../Menues/Buyer/MyOrders";
 import AddProduct from "../Menues/SellerMenue/AddProduct";
 import AllSeller from "../Menues/SellerMenue/AdminMenue/AllSeller";
 import MyProduct from "../Menues/SellerMenue/MyProduct";
@@ -70,7 +71,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/my-orders",
         element: (
           <PrivateRoute>
-            <AllSeller />
+            <MyOrders />
           </PrivateRoute>
         ),
       },
