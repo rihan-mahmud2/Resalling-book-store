@@ -1,7 +1,6 @@
 import React from "react";
-import BookingModal from "../Modal/BookingModal";
 
-const CategoryCard = ({ category }) => {
+const CategoryCard = ({ category, setBookingCategory }) => {
   const {
     image,
     product_name,
@@ -23,15 +22,18 @@ const CategoryCard = ({ category }) => {
           <p className="text-xl bolder">Purchase Year {purchase_year}</p>
           <div className="card-actions justify-end">
             <p>{location}</p>
-            <small className="bolder text-xl text-primary">{postedDate}</small>
-            <label htmlFor="my-modal" className="btn">
-              open modal
+            <label
+              htmlFor="my-modal"
+              onClick={() => setBookingCategory(category)}
+              className="btn"
+            >
+              {product_name}
             </label>
+
+            <small className="bolder text-xl text-primary">{postedDate}</small>
           </div>
         </div>
       </div>
-
-      <BookingModal category={category} />
     </>
   );
 };

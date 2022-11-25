@@ -1,7 +1,6 @@
-import { data } from "autoprefixer";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { saveUser } from "../api/users";
 import { setuseToken } from "../api/useToken";
 import { AuthContext } from "../context/ContextProvider";
@@ -9,7 +8,7 @@ import { AuthContext } from "../context/ContextProvider";
 const Register = () => {
   const [type, setType] = useState("");
   const { createUser } = useContext(AuthContext);
-  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -33,6 +32,7 @@ const Register = () => {
         saveUser(userInfo)
           .then((data) => {
             console.log(data);
+            navigate("/");
           })
 
           .catch((err) => {

@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setuseToken } from "../api/useToken";
 import { AuthContext } from "../context/ContextProvider";
+import ButtonSpinner from "../Spinner/ButtonSpinner";
 
 const SignUp = () => {
   const { logIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const [loading, setLoading] = useState(false);
   const from = location.state?.from?.pathname || "/";
 
   const handleRegister = (e) => {
@@ -16,11 +18,13 @@ const SignUp = () => {
 
     const email = form.email.value;
     const password = form.password.value;
-
+    setLoading(true);
     console.log(email, password);
     logIn(email, password)
       .then((res) => {
         const user = res.user;
+        toast("User Created Successful");
+        setLoading(false);
         setuseToken(email);
 
         console.log(user);
@@ -80,13 +84,17 @@ const SignUp = () => {
             </button>
             <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
               Have an acount?
-              <Link
-                to="/register"
-                href="#"
-                class="text-blue-700 hover:underline dark:text-blue-500"
-              >
-                Register
-              </Link>
+              {loading ? (
+                <ButtonSpinner />
+              ) : (
+                <Link
+                  to="/register"
+                  href="#"
+                  class="text-blue-700 hover:underline dark:text-blue-500"
+                >
+                  Register
+                </Link>
+              )}
             </div>
           </form>
         </div>

@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../context/ContextProvider";
 import axios from "axios";
-import TableTr from "./TableTr";
-import { async } from "@firebase/util";
 const MyProduct = () => {
   const { user } = useContext(AuthContext);
 
@@ -23,7 +21,7 @@ const MyProduct = () => {
     return <h1>Loading...........</h1>;
   }
 
-  const handleDelete = async (id) => {
+  const handleAdvertised = async (id) => {
     try {
       const res = fetch(`http://localhost:5000/category/${id}`, {
         method: "PUT",
@@ -33,8 +31,11 @@ const MyProduct = () => {
         },
       });
       const data = res.json();
+      console.log(data);
     } catch {}
   };
+
+  const handelDelete = (id) => {};
 
   return (
     <div className="overflow-x-auto">
@@ -46,6 +47,7 @@ const MyProduct = () => {
             <th>Posted Date</th>
             <th>Price</th>
             <th>Action</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -56,11 +58,14 @@ const MyProduct = () => {
               <td>{product?.postedDate}</td>
               <td>${product?.product_price}</td>
               <td>
+                <button className="btn btn-accent btn-sm">Sold</button>
+              </td>
+              <td>
                 <button
-                  onClick={() => handleDelete(product?._id)}
-                  className="btn btn-accent btn-sm"
+                  onClick={() => handleAdvertised(product?._id)}
+                  className="btn btn-success btn-sm"
                 >
-                  Sold
+                  Advertised
                 </button>
               </td>
             </tr>

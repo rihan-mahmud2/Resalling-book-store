@@ -1,17 +1,24 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/ContextProvider";
 
-const BookingModal = ({ category }) => {
+const BookingModal = ({ category, setBookingCategory }) => {
   const { user } = useContext(AuthContext);
-  const { product_name, product_price } = category;
+
+  const { product_name, product_price, _id } = category;
+  const handleBook = (event) => {
+    event.preventDefault();
+    setBookingCategory(null);
+  };
+  console.log(product_name);
   return (
     <div className="">
       <input type="checkbox" id="my-modal" className="modal-toggle" />
-      <div className="modal">
+      <div className={`modal`}>
         <div class="relative w-full max-w-md h-full md:h-auto">
           <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <button
               type="button"
+              htmlFor={`my-modal${_id}`}
               class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
               data-modal-toggle="authentication-modal"
             >
@@ -138,9 +145,14 @@ const BookingModal = ({ category }) => {
                 </div>
 
                 <div className="modal-action">
-                  <label htmlFor="my-modal" className="btn">
-                    Yay!
-                  </label>
+                  <button
+                    onClick={handleBook}
+                    type="submit"
+                    htmlFor={`my-modal${_id}`}
+                    className="btn"
+                  >
+                    Confirm
+                  </button>
                 </div>
               </form>
             </div>
