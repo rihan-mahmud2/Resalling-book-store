@@ -4,13 +4,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { saveUser } from "../api/users";
 import { setuseToken } from "../api/useToken";
 import { AuthContext } from "../context/ContextProvider";
+import ButtonSpinner from "../Spinner/ButtonSpinner";
 
 const Register = () => {
   const [type, setType] = useState("");
+  const { loading, setLoading } = useContext(AuthContext);
   const { createUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
+    setLoading(true);
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -31,18 +34,17 @@ const Register = () => {
 
         saveUser(userInfo)
           .then((data) => {
-            console.log(data);
+            setLoading(false);
             navigate("/");
           })
 
           .catch((err) => {
             toast(err.message);
           });
-
-        console.log(user);
       })
       .catch((err) => {
-        console.log(err.message);
+        toast(err.message);
+        setLoading(false);
       });
   };
 
@@ -115,12 +117,16 @@ const Register = () => {
               <option>seller</option>
             </select>
 
-            <button
-              type="submit"
-              class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Login to your account
-            </button>
+            {loading ? (
+              <ButtonSpinner />
+            ) : (
+              <button
+                type="submit"
+                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Sign Up
+              </button>
+            )}
             <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
               Have an acount?
               <Link

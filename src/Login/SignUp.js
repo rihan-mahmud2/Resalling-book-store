@@ -22,16 +22,15 @@ const SignUp = () => {
     console.log(email, password);
     logIn(email, password)
       .then((res) => {
-        const user = res.user;
-        toast("User Created Successful");
+        toast("Login Successfully");
         setLoading(false);
         setuseToken(email);
 
-        console.log(user);
         navigate(from, { replace: true });
       })
       .catch((err) => {
-        console.log(err.message);
+        toast(err.message);
+        setLoading(false);
       });
   };
 

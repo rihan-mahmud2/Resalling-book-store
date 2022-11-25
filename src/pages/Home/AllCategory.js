@@ -6,7 +6,7 @@ import BookingModal from "../../Modal/BookingModal";
 const AllCategory = () => {
   const categories = useLoaderData();
   const [bookingCategory, setBookingCategory] = useState(null);
-  console.log(categories);
+
   return (
     <div className="w-[70%] mx-auto my-10">
       {categories.map((category) => (
