@@ -27,26 +27,19 @@ const Sidebar = () => {
         <ul className="menu p-4 w-80 bg-base-100 text-base-content">
           {userRole === "admin" && (
             <>
-              (
               <li>
-                <a>All Sellers</a>
+                <Link to="/dashboard/all-seller">All Sellers</Link>
               </li>
               <li>
-                <a>All Buyers</a>
+                <Link to="/dashboard/all-buyer">All Buyers</Link>
               </li>
-              )
             </>
           )}
           {userRole === "buyer" && (
             <>
-              (
               <li>
-                <a>All Sellers</a>
+                <Link to="/dashboard/my-orders">My Orders</Link>
               </li>
-              <li>
-                <a>All Buyers</a>
-              </li>
-              )
             </>
           )}
           {userRole === "seller" && (

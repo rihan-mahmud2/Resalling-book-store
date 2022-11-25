@@ -4,6 +4,7 @@ import Register from "../Login/Register";
 import SignUp from "../Login/SignUp";
 import Main from "../Main/Layout";
 import AddProduct from "../Menues/SellerMenue/AddProduct";
+import AllSeller from "../Menues/SellerMenue/AdminMenue/AllSeller";
 import MyProduct from "../Menues/SellerMenue/MyProduct";
 import AllCategory from "../pages/Home/AllCategory";
 import Home from "../pages/Home/Home";
@@ -54,6 +55,22 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyProduct />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/all-seller",
+        element: (
+          <PrivateRoute>
+            <AllSeller />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/my-orders",
+        element: (
+          <PrivateRoute>
+            <AllSeller />
           </PrivateRoute>
         ),
       },
