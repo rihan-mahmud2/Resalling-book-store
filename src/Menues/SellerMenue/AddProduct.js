@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { format } from "date-fns";
 import { addCommidites } from "../../api/addProduct";
+import { AuthContext } from "../../context/ContextProvider";
 
 const AddProduct = () => {
+  const { user } = useContext(AuthContext);
   const [category, setCategory] = useState("");
   const handleProductSubmit = (event) => {
     event.preventDefault();
@@ -34,6 +36,7 @@ const AddProduct = () => {
           category,
           image: data.data?.display_url,
           postedDate,
+          email: user?.email,
         };
 
         // products added by seller
@@ -49,7 +52,7 @@ const AddProduct = () => {
 
   return (
     <>
-      <form onSubmit={handleProductSubmit} className="w-1/2 mx-auto mt-10">
+      <form onSubmit={handleProductSubmit} className="mx-auto mt-2">
         <div class="relative z-0 mb-6 w-full group">
           <input
             type="text"

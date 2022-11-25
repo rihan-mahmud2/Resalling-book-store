@@ -52,10 +52,10 @@ const Sidebar = () => {
           {userRole === "seller" && (
             <>
               <li>
-                <Link to="/dashboard/add-product">Add A Product</Link>
+                <Link to="/dashboard">Add A Product</Link>
               </li>
               <li>
-                <a>My Products</a>
+                <Link to="/dashboard/my-product">My Products</Link>
               </li>
             </>
           )}

@@ -4,6 +4,7 @@ import Register from "../Login/Register";
 import SignUp from "../Login/SignUp";
 import Main from "../Main/Layout";
 import AddProduct from "../Menues/SellerMenue/AddProduct";
+import MyProduct from "../Menues/SellerMenue/MyProduct";
 import AllCategory from "../pages/Home/AllCategory";
 import Home from "../pages/Home/Home";
 import PrivateRoute from "./PrivateRoute";
@@ -41,10 +42,18 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/dashboard/add-product",
+        path: "/dashboard",
         element: (
           <PrivateRoute>
             <AddProduct />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/my-product",
+        element: (
+          <PrivateRoute>
+            <MyProduct />
           </PrivateRoute>
         ),
       },
