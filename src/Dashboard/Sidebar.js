@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getAuthority } from "../api/getRole";
 import { AuthContext } from "../context/ContextProvider";
+import CenterSpinner from "../Spinner/CenterSpinner";
 
 const Sidebar = () => {
   const { user } = useContext(AuthContext);
@@ -15,7 +16,7 @@ const Sidebar = () => {
 
   console.log(userRole);
   return !user && !userRole ? (
-    <h1>Loading......</h1>
+    <CenterSpinner />
   ) : (
     <div className="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />

@@ -1,7 +1,13 @@
-import React from "react";
+import { data } from "autoprefixer";
+import React, { useContext, useEffect, useState } from "react";
+import { CheckmarkIcon } from "react-hot-toast";
+import { AuthContext } from "../context/ContextProvider";
 
 const CategoryCard = ({ category, setBookingCategory }) => {
+  const { user } = useContext(AuthContext);
+  const [isVerified, setIsVerified] = useState("");
   const {
+    email,
     image,
     product_name,
     product_price,
@@ -10,9 +16,17 @@ const CategoryCard = ({ category, setBookingCategory }) => {
     postedDate,
   } = category;
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/verifiedStatus/${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setIsVerified(data.verified);
+      });
+  });
+
   return (
     <>
-      <div className="card card-side bg-base-100 shadow-xl">
+      <div className="card card-side mt-5 bg-base-100 shadow-xl">
         <figure>
           <img src={image} alt="Movie" />
         </figure>
@@ -22,15 +36,17 @@ const CategoryCard = ({ category, setBookingCategory }) => {
           <p className="text-xl bolder">Purchase Year {purchase_year}</p>
           <div className="card-actions justify-end">
             <p>{location}</p>
+            <small className="bolder text-xl text-primary">{postedDate}</small>
+            <p>{user?.displayName}</p>
+            <small>{email}</small>
+            {isVerified === "yes" && <CheckmarkIcon />}
             <label
               htmlFor="my-modal"
               onClick={() => setBookingCategory(category)}
               className="btn"
             >
-              {product_name}
+              Book Now
             </label>
-
-            <small className="bolder text-xl text-primary">{postedDate}</small>
           </div>
         </div>
       </div>

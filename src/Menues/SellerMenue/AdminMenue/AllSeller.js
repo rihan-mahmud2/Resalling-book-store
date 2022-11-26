@@ -1,12 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { CheckmarkIcon } from "react-hot-toast";
 
 import CenterSpinner from "../../../Spinner/CenterSpinner";
 
 const AllSeller = () => {
   const type = "seller";
 
-  const { data: allSellers = [], isLoading } = useQuery({
+  const {
+    data: allSellers = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/user/${type}`);
@@ -14,6 +19,20 @@ const AllSeller = () => {
       return data;
     },
   });
+
+  const handleVeryfy = async (id) => {
+    const res = await fetch(`http://localhost:5000/verifyUser/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.getItem("BookshopToken"),
+      },
+    });
+    const data = await res.json();
+    if (data.acknowledged) {
+      refetch();
+    }
+  };
 
   if (isLoading) {
     return <CenterSpinner />;
@@ -27,7 +46,7 @@ const AllSeller = () => {
             <th></th>
             <th>Name</th>
             <th>Email</th>
-            <th>Action</th>
+            <th>Is Verified</th>
             <th></th>
           </tr>
         </thead>
@@ -37,8 +56,18 @@ const AllSeller = () => {
               <th>{i + 1}</th>
               <td>{seller?.name}</td>
               <td>{seller?.email}</td>
-
-              <td>Quality Control Specialist</td>
+              <td>
+                {seller && !seller?.verified ? (
+                  <button
+                    onClick={() => handleVeryfy(seller._id)}
+                    className="btn btn-sm btn-accent"
+                  >
+                    NO
+                  </button>
+                ) : (
+                  <CheckmarkIcon />
+                )}
+              </td>
               <td>Blue</td>
             </tr>
           ))}

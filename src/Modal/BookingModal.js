@@ -54,12 +54,14 @@ const BookingModal = ({ category, setBookingCategory }) => {
         <div class="relative w-full max-w-md h-full md:h-auto">
           <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <button
+              onClick={() => setBookingCategory(null)}
               type="button"
               htmlFor="my-modal"
               class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
               data-modal-toggle="authentication-modal"
             >
               <svg
+                htmlFor="my-modal"
                 aria-hidden="true"
                 class="w-5 h-5"
                 fill="currentColor"

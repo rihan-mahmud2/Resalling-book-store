@@ -1,4 +1,3 @@
-import { Disclosure } from "@headlessui/react";
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Dashboard/DashboardLayout";
 import Register from "../Login/Register";
@@ -9,9 +8,12 @@ import MyOrders from "../Menues/Buyer/MyOrders";
 import AddProduct from "../Menues/SellerMenue/AddProduct";
 import AllSeller from "../Menues/SellerMenue/AdminMenue/AllSeller";
 import MyProduct from "../Menues/SellerMenue/MyProduct";
+import Blog from "../Modal/Blog";
 import AllCategory from "../pages/Home/AllCategory";
 import Home from "../pages/Home/Home";
 import DispalyError from "../Shared/DisplayError/DispalyError";
+import WishList from "../Spinner/WishList";
+import AdminPrivateRoute from "./AdminPrivateRoute";
 import PrivateRoute from "./PrivateRoute";
 export const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         errorElement: <DispalyError />,
+      },
+      {
+        path: "/whislist",
+        element: <WishList />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
       },
       {
         path: "/category/:name",
@@ -70,9 +80,9 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/all-seller",
         element: (
-          <PrivateRoute>
+          <AdminPrivateRoute>
             <AllSeller />
-          </PrivateRoute>
+          </AdminPrivateRoute>
         ),
         // loader: ({ params }) =>
         //   fetch(`http://localhost:5000/user/${params.role}`),
