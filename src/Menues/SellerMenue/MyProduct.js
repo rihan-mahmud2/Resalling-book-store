@@ -5,7 +5,11 @@ import axios from "axios";
 const MyProduct = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: myProducts = [], isLoading } = useQuery({
+  const {
+    data: myProducts = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["category", user?.email],
     queryFn: async () => {
       const res = await axios.get(
@@ -22,17 +26,17 @@ const MyProduct = () => {
   }
 
   const handleAdvertised = async (id) => {
-    try {
-      const res = fetch(`http://localhost:5000/category/${id}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          authorization: localStorage.getItem("BookshopToken"),
-        },
-      });
-      const data = res.json();
-      console.log(data);
-    } catch {}
+    const res = await fetch(`http://localhost:5000/products/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: localStorage.getItem("BookshopToken"),
+      },
+    });
+    const data = await res.json();
+    if (data.acknowledged) {
+      refetch();
+    }
   };
 
   const handelDelete = (id) => {};
@@ -58,15 +62,17 @@ const MyProduct = () => {
               <td>{product?.postedDate}</td>
               <td>${product?.product_price}</td>
               <td>
-                <button className="btn btn-accent btn-sm">Sold</button>
+                <button className="btn btn-accent btn-sm">Delete</button>
               </td>
               <td>
-                <button
-                  onClick={() => handleAdvertised(product?._id)}
-                  className="btn btn-success btn-sm"
-                >
-                  Advertised
-                </button>
+                {product?.advertised !== "yes" && (
+                  <button
+                    onClick={() => handleAdvertised(product?._id)}
+                    className="btn btn-success btn-sm"
+                  >
+                    Advertised
+                  </button>
+                )}
               </td>
             </tr>
           ))}

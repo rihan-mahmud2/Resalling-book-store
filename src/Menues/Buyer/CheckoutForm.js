@@ -16,7 +16,7 @@ const CheckoutForm = () => {
       </div>
       <div className="w-96 mt-10">
         <Elements stripe={stripePromise}>
-          <Payment />
+          <Payment booking={bookingInfo} />
         </Elements>
       </div>
     </div>
