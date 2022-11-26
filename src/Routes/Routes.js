@@ -1,14 +1,17 @@
+import { Disclosure } from "@headlessui/react";
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Dashboard/DashboardLayout";
 import Register from "../Login/Register";
 import SignUp from "../Login/SignUp";
 import Main from "../Main/Layout";
+import CheckoutForm from "../Menues/Buyer/CheckoutForm";
 import MyOrders from "../Menues/Buyer/MyOrders";
 import AddProduct from "../Menues/SellerMenue/AddProduct";
 import AllSeller from "../Menues/SellerMenue/AdminMenue/AllSeller";
 import MyProduct from "../Menues/SellerMenue/MyProduct";
 import AllCategory from "../pages/Home/AllCategory";
 import Home from "../pages/Home/Home";
+import DispalyError from "../Shared/DisplayError/DispalyError";
 import PrivateRoute from "./PrivateRoute";
 export const router = createBrowserRouter([
   {
@@ -18,6 +21,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        errorElement: <DispalyError />,
       },
       {
         path: "/category/:name",
@@ -78,6 +82,16 @@ export const router = createBrowserRouter([
             <MyOrders />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/dashboard/checkout/:id",
+        element: (
+          <PrivateRoute>
+            <CheckoutForm />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/payment/${params.id}`),
       },
     ],
   },
