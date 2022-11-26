@@ -35,7 +35,7 @@ const Sidebar = () => {
               </li>
             </>
           )}
-          {userRole === "buyer" && (
+          {userRole !== "seller" && userRole !== "admin" && (
             <>
               <li>
                 <Link to="/dashboard/my-orders">My Orders</Link>

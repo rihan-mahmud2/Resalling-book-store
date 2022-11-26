@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../context/ContextProvider";
 import axios from "axios";
+import { async } from "@firebase/util";
 const MyProduct = () => {
   const { user } = useContext(AuthContext);
 
@@ -39,7 +40,18 @@ const MyProduct = () => {
     }
   };
 
-  const handelDelete = (id) => {};
+  const handelDelete = async (id) => {
+    const res = await fetch(`http://localhost:5000/products/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: localStorage.getItem("BookshopToken"),
+      },
+    });
+    const data = await res.json();
+    if (data.acknowledged) {
+      refetch();
+    }
+  };
 
   return (
     <div className="overflow-x-auto">
@@ -62,7 +74,12 @@ const MyProduct = () => {
               <td>{product?.postedDate}</td>
               <td>${product?.product_price}</td>
               <td>
-                <button className="btn btn-accent btn-sm">Delete</button>
+                <button
+                  onClick={() => handelDelete(product?._id)}
+                  className="btn btn-accent btn-sm"
+                >
+                  Delete
+                </button>
               </td>
               <td>
                 {product?.advertised !== "yes" && (

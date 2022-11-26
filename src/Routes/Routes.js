@@ -74,6 +74,8 @@ export const router = createBrowserRouter([
             <AllSeller />
           </PrivateRoute>
         ),
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/user/${params.role}`),
       },
       {
         path: "/dashboard/my-orders",
