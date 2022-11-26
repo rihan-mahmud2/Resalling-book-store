@@ -64,7 +64,7 @@ const Payment = ({ booking }) => {
         <button
           className="btn btn-sm btn-primary mt-6 my-12"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe}
         >
           Pay
         </button>

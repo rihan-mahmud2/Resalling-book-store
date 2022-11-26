@@ -1,6 +1,6 @@
-import { data } from "autoprefixer";
+import { async } from "@firebase/util";
 import React, { useContext, useEffect, useState } from "react";
-import { CheckmarkIcon } from "react-hot-toast";
+import toast, { CheckmarkIcon } from "react-hot-toast";
 import { AuthContext } from "../context/ContextProvider";
 
 const CategoryCard = ({ category, setBookingCategory }) => {
@@ -24,6 +24,26 @@ const CategoryCard = ({ category, setBookingCategory }) => {
       });
   });
 
+  const handleAddToWhishList = async (category) => {
+    const whishes = {
+      ...category,
+      userEmail: user?.email,
+    };
+    const res = await fetch("http://localhost:5000/whishList", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(whishes),
+    });
+    const data = res.json();
+    data.then((result) => {
+      if (result.acknowledged) {
+        toast("Added to Whishlist");
+      }
+    });
+  };
+
   return (
     <>
       <div className="card card-side mt-5 bg-base-100 shadow-xl">
@@ -40,6 +60,13 @@ const CategoryCard = ({ category, setBookingCategory }) => {
             <p>{user?.displayName}</p>
             <small>{email}</small>
             {isVerified === "yes" && <CheckmarkIcon />}
+
+            <button
+              onClick={() => handleAddToWhishList(category)}
+              className="btn inline"
+            >
+              Whislist
+            </button>
             <label
               htmlFor="my-modal"
               onClick={() => setBookingCategory(category)}
