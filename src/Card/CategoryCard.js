@@ -13,11 +13,15 @@ const CategoryCard = ({ category, setBookingCategory }) => {
     purchase_year,
     location,
     postedDate,
+
+    product_original_price,
   } = category;
 
   useEffect(() => {
     fetch(`http://localhost:5000/verifiedStatus/${email}`, {
-      authorization: localStorage.getItem("BookshopToken"),
+      headers: {
+        authorization: localStorage.getItem("BookshopToken"),
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -47,19 +51,59 @@ const CategoryCard = ({ category, setBookingCategory }) => {
 
   return (
     <>
-      <div className="card card-side mt-5 bg-base-100 shadow-xl">
+      {/* <div className="card card-side mt-5 bg-base-300 shadow-xl flex justify-between">
         <figure>
           <img src={image} alt="Movie" />
         </figure>
+        <div className="card-actions flex-col">
+          <h2 className="card-title">{product_name}</h2>
+          <p className="text-xl bolder">Sold price ${product_price}</p>
+          <p className="text-xl bolder">
+            Original price ${product_original_price}
+          </p>
+          <p className="text-xl bolder">Purchase Year {purchase_year}</p>
+
+          <p>{location}</p>
+          <small className="bolder text-xl text-primary">{postedDate}</small>
+          <p>{user?.displayName}</p>
+          <small>{email}</small>
+          {isVerified === "yes" && <CheckmarkIcon />}
+
+          <button
+            onClick={() => handleAddToWhishList(category)}
+            className="btn inline"
+          >
+            Whislist
+          </button>
+          {category?.paid ? (
+            ""
+          ) : (
+            <label
+              htmlFor="my-modal"
+              onClick={() => setBookingCategory(category)}
+              className="btn"
+            >
+              Book Now
+            </label>
+          )}
+        </div>
+      </div> */}
+
+      <div className="card card-side bg-base-100 shadow-xl">
+        <figure>
+          <img className="w-52" src={image} alt="Movie" />
+        </figure>
         <div className="card-body">
           <h2 className="card-title">{product_name}</h2>
-          <p className="text-xl bolder">Original price ${product_price}</p>
-          <p className="text-xl bolder">Purchase Year {purchase_year}</p>
+          <p className="text-black font-bold">Sold Price ${product_price}</p>
+          <p className="text-black font-bold">
+            Original Price ${product_original_price}
+          </p>
+          <p className="text-black font-bold">Location: {location}</p>
+          <p className="text-black font-bold">poste Date: {postedDate}</p>
+          <p className="text-black font-bold">Purchase Year: {purchase_year}</p>
+          <p className="text-black font-bold">email: {email}</p>
           <div className="card-actions justify-end">
-            <p>{location}</p>
-            <small className="bolder text-xl text-primary">{postedDate}</small>
-            <p>{user?.displayName}</p>
-            <small>{email}</small>
             {isVerified === "yes" && <CheckmarkIcon />}
 
             <button
@@ -68,13 +112,17 @@ const CategoryCard = ({ category, setBookingCategory }) => {
             >
               Whislist
             </button>
-            <label
-              htmlFor="my-modal"
-              onClick={() => setBookingCategory(category)}
-              className="btn"
-            >
-              Book Now
-            </label>
+            {category?.paid ? (
+              ""
+            ) : (
+              <label
+                htmlFor="my-modal"
+                onClick={() => setBookingCategory(category)}
+                className="btn"
+              >
+                Book Now
+              </label>
+            )}
           </div>
         </div>
       </div>

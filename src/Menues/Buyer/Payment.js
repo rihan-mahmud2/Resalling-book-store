@@ -1,7 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 
 const Payment = ({ booking }) => {
   const stripe = useStripe();
@@ -11,10 +10,10 @@ const Payment = ({ booking }) => {
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  //  const {state} = useLocation();
-  //  console.log(state)
+
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
+
     fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
       headers: {
@@ -75,6 +74,7 @@ const Payment = ({ booking }) => {
         transactionId: paymentIntent.id,
         price: booking.productPrice,
         bookingId: booking._id,
+        category_id: booking.category_id,
       };
       ///storing the data to data base
       fetch("http://localhost:5000/payments", {

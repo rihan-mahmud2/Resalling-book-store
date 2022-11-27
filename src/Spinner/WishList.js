@@ -24,7 +24,7 @@ const WishList = () => {
   });
 
   const handleNavigate = (item) => {
-    navigate(`/dashboard/checkout/${item._id}`, { state: { item } });
+    navigate(`/dashboard/checkout/${item._id}`, { wishList: { item } });
   };
 
   if (isLoading || !user?.email) {
@@ -34,7 +34,7 @@ const WishList = () => {
   return (
     <div className="my-5 min-h-16">
       {whishListItems.map((item) => (
-        <div className="card w-1/2 h-[200px] mx-auto card-side bg-base-100 shadow-xl">
+        <div className="card w-1/2 min-h-[200px] mx-auto card-side bg-base-100 shadow-xl">
           <figure>
             <img src={item?.image} alt="Movie" />
           </figure>

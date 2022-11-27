@@ -3,6 +3,7 @@ export const addCommidites = async (product) => {
     method: "POST",
     headers: {
       "content-type": "application/json",
+      authorization: localStorage.getItem("BookshopToken"),
     },
     body: JSON.stringify(product),
   });

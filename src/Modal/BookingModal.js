@@ -5,7 +5,7 @@ import { AuthContext } from "../context/ContextProvider";
 const BookingModal = ({ category, setBookingCategory }) => {
   const { user } = useContext(AuthContext);
 
-  const { product_name, product_price, image } = category;
+  const { product_name, product_price, image, _id } = category;
   const handleBook = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -26,6 +26,7 @@ const BookingModal = ({ category, setBookingCategory }) => {
       productPrice,
       productName,
       image,
+      category_id: _id,
     };
 
     //saving the to data base

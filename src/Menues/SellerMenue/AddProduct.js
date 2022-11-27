@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
   const [category, setCategory] = useState("");
+  const [condition, setConditon] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleProductSubmit = (event) => {
@@ -17,6 +18,7 @@ const AddProduct = () => {
     const form = event.target;
     const product_name = form.product_name.value;
     const product_price = form.product_price.value;
+    const product_original_price = form.product_original_price.value;
     const location = form.location.value;
     const purchase_year = form.purchase_year.value;
     const phone = form.phone.value;
@@ -45,6 +47,8 @@ const AddProduct = () => {
           postedDate,
           email: user?.email,
           description,
+          condition,
+          product_original_price,
         };
 
         // products added by seller
@@ -91,6 +95,22 @@ const AddProduct = () => {
               id="floating_password"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
+              required
+            />
+            <label
+              for="floating_password"
+              class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Product Original Price
+            </label>
+          </div>
+          <div class="relative z-0 mb-6 w-full group">
+            <input
+              type="number"
+              name="product_original_price"
+              id="floating_password"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=""
               required
             />
             <label
@@ -177,18 +197,33 @@ const AddProduct = () => {
             </div>
           </div>
 
-          <div class="relative z-0 mb-6 w-full group">
-            <select
-              onChange={(data) => setCategory(data.target.value)}
-              className="select input-bordered w-full max-w-xs"
-            >
-              <option disabled selected>
-                Pick your favorite Simpson
-              </option>
-              <option>literature</option>
-              <option>story</option>
-              <option>tecnical</option>
-            </select>
+          <div className="flex justify-between">
+            <div class="relative z-0 mb-6 w-full group mr-5">
+              <select
+                onChange={(data) => setCategory(data.target.value)}
+                className="select input-bordered w-full max-w-xs"
+              >
+                <option disabled selected>
+                  Pick the type of the book?
+                </option>
+                <option>literature</option>
+                <option>story</option>
+                <option>tecnical</option>
+              </select>
+            </div>
+            <div class="relative z-0 mb-6 w-full group">
+              <select
+                onChange={(data) => setConditon(data.target.value)}
+                className="select input-bordered w-full max-w-xs"
+              >
+                <option disabled selected>
+                  Pick your book condition
+                </option>
+                <option>Excellent</option>
+                <option>Good</option>
+                <option>Fair</option>
+              </select>
+            </div>
           </div>
 
           <button

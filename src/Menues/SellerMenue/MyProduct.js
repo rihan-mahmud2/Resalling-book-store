@@ -83,14 +83,16 @@ const MyProduct = () => {
                 </button>
               </td>
               <td>
-                {product?.advertised !== "yes" && (
-                  <button
-                    onClick={() => handleAdvertised(product?._id)}
-                    className="btn btn-success btn-sm"
-                  >
-                    Advertised
-                  </button>
-                )}
+                {product?.paid
+                  ? ""
+                  : product?.advertised !== "yes" && (
+                      <button
+                        onClick={() => handleAdvertised(product?._id)}
+                        className="btn btn-success btn-sm"
+                      >
+                        Advertised
+                      </button>
+                    )}
               </td>
               <td>
                 {product?.paid && (

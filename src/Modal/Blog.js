@@ -11,7 +11,7 @@ const Blog = () => {
           What are the different ways to manage a state in a React application?
         </div>
         <div className="collapse-content">
-          <p>
+          <div>
             The Four Kinds of React State to Manage When we talk about state in
             our applications, it’s important to be clear about what types of
             state actually matter. There are four main types of state you need
@@ -22,7 +22,7 @@ const Blog = () => {
               <li>Server state</li>
               <li>URL state</li>
             </ul>
-          </p>
+          </div>
 
           <div>
             <h1 className="text-blue-500 text-center font-extrabold text-lg">
