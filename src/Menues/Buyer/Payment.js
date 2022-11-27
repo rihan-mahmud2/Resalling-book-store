@@ -1,19 +1,27 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Payment = ({ booking }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [err, setErr] = useState("");
+  const [success, setSuccess] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-
+  //  const {state} = useLocation();
+  //  console.log(state)
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ booking }),
+      headers: {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("BookshopToken"),
+      },
+      body: JSON.stringify(booking),
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
@@ -41,6 +49,45 @@ const Payment = ({ booking }) => {
     if (error) {
       setErr(error.message);
     }
+    setProcessing(true);
+    const { paymentIntent, error: confirmCardPaymentError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: booking.name,
+            email: booking.email,
+          },
+        },
+      });
+
+    if (confirmCardPaymentError) {
+      setErr(confirmCardPaymentError.message);
+      return;
+    }
+
+    if (paymentIntent.status === "succeeded") {
+      console.log(paymentIntent);
+      setSuccess("Payment Successfull");
+      setTransactionId(paymentIntent.id);
+      const payment = {
+        email: booking.email,
+        transactionId: paymentIntent.id,
+        price: booking.productPrice,
+        bookingId: booking._id,
+      };
+      ///storing the data to data base
+      fetch("http://localhost:5000/payments", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: localStorage.getItem("BookshopToken"),
+        },
+        body: JSON.stringify(payment),
+      });
+    }
+
+    setProcessing(false);
   };
   return (
     <>
@@ -64,7 +111,7 @@ const Payment = ({ booking }) => {
         <button
           className="btn btn-sm btn-primary mt-6 my-12"
           type="submit"
-          disabled={!stripe}
+          disabled={!stripe || !clientSecret || processing}
         >
           Pay
         </button>
@@ -73,6 +120,13 @@ const Payment = ({ booking }) => {
       <div>
         {err && <p className="text-red-500 bold text-xl mt-5">{err}</p>}
       </div>
+
+      {success && (
+        <div>
+          <p className="text-green-400 font-bold text-lg">{success}</p>
+          <small>{transactionId}</small>
+        </div>
+      )}
     </>
   );
 };

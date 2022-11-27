@@ -41,6 +41,9 @@ const Sidebar = () => {
               <li>
                 <Link to="/dashboard/my-orders">My Orders</Link>
               </li>
+              <li>
+                <Link to="/dashboard/my-wishlist">My Whishlist</Link>
+              </li>
             </>
           )}
           {userRole === "seller" && (

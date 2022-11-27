@@ -6,6 +6,7 @@ import Main from "../Main/Layout";
 import CheckoutForm from "../Menues/Buyer/CheckoutForm";
 import MyOrders from "../Menues/Buyer/MyOrders";
 import AddProduct from "../Menues/SellerMenue/AddProduct";
+import AllBuyer from "../Menues/SellerMenue/AdminMenue/AllBuyer";
 import AllSeller from "../Menues/SellerMenue/AdminMenue/AllSeller";
 import MyProduct from "../Menues/SellerMenue/MyProduct";
 import Blog from "../Modal/Blog";
@@ -19,16 +20,14 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <DispalyError></DispalyError>,
     children: [
       {
         path: "/",
         element: <Home />,
         errorElement: <DispalyError />,
       },
-      {
-        path: "/whislist",
-        element: <WishList />,
-      },
+
       {
         path: "/blog",
         element: <Blog />,
@@ -41,7 +40,11 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.name}`),
+          fetch(`http://localhost:5000/category/${params.name}`, {
+            headers: {
+              authorization: localStorage.getItem("BookshopToken"),
+            },
+          }),
       },
       {
         path: "/register",
@@ -88,10 +91,28 @@ export const router = createBrowserRouter([
         //   fetch(`http://localhost:5000/user/${params.role}`),
       },
       {
+        path: "/dashboard/all-buyer",
+        element: (
+          <AdminPrivateRoute>
+            <AllBuyer />
+          </AdminPrivateRoute>
+        ),
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/user/${params.role}`),
+      },
+      {
         path: "/dashboard/my-orders",
         element: (
           <PrivateRoute>
             <MyOrders />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/my-wishlist",
+        element: (
+          <PrivateRoute>
+            <WishList />
           </PrivateRoute>
         ),
       },

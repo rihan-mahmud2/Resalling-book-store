@@ -20,6 +20,7 @@ const AddProduct = () => {
     const location = form.location.value;
     const purchase_year = form.purchase_year.value;
     const phone = form.phone.value;
+    const description = form.description.value;
     const image = form.image.files[0];
     const postedDate = format(new Date(), "PP");
     const formData = new FormData();
@@ -43,6 +44,7 @@ const AddProduct = () => {
           image: data.data?.display_url,
           postedDate,
           email: user?.email,
+          description,
         };
 
         // products added by seller
@@ -134,7 +136,7 @@ const AddProduct = () => {
             <div class="relative z-0 mb-6 w-full group">
               <textarea
                 type="text"
-                name="floating_last_name"
+                name="description"
                 id="floating_last_name"
                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "

@@ -38,6 +38,19 @@ const AllSeller = () => {
     return <CenterSpinner />;
   }
 
+  const handelDelete = async (id) => {
+    const res = await fetch(`http://localhost:5000/users/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: localStorage.getItem("BookshopToken"),
+      },
+    });
+    const data = await res.json();
+    if (data.acknowledged) {
+      refetch();
+    }
+  };
+
   return (
     <div className="overflow-x-auto">
       <table className="table w-full">
@@ -68,7 +81,14 @@ const AllSeller = () => {
                   <CheckmarkIcon />
                 )}
               </td>
-              <td>Blue</td>
+              <td>
+                <button
+                  onClick={() => handelDelete(seller?._id)}
+                  className="btn btn-accent btn-sm"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

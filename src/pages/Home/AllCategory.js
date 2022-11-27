@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import CategoryCard from "../../Card/CategoryCard";
 import BookingModal from "../../Modal/BookingModal";
+import CenterSpinner from "../../Spinner/CenterSpinner";
 
 const AllCategory = () => {
   const categories = useLoaderData();
   const [bookingCategory, setBookingCategory] = useState(null);
+
+  const navigation = useNavigation();
+  if (navigation?.state === "loading") {
+    return <CenterSpinner />;
+  }
 
   return (
     <div className="w-[70%] mx-auto my-10">

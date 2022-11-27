@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+Your Readme file for the client-side repo should have details about your project's features and functionalities in bullet points(at least five bullet points) and your live link. Adding a meaningful readme file for the server-side repo is optional.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+##### Projects Features And bullet points:
+
+1. Bullets Poinst of the projects:
+
+- This project is a Resalling Book Store. There will be Three types of user _Admin_ , _Buyer_ , _Seller_
+- Admin have power to delete any user he/she wishes also admin can give verify mark to buyer wherease seller can only add product and see all products. A seller also a buyer
+- Buyer can buy any products and also pay it by card payment
+- There is firebase authentication system where on login page an existed user can logged in if the user is registered he can create an account by giving a valid email and pasword
+
+[link name](targetURL)

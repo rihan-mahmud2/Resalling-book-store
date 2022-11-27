@@ -1,18 +1,32 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/ContextProvider";
 
 const WishList = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const { data: whishListItems = [], isLoading } = useQuery({
     queryKey: ["whisList", user?.email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/whishList/${user?.email}`);
+      const res = await fetch(
+        `http://localhost:5000/whishList/${user?.email}`,
+        {
+          headers: {
+            authorization: localStorage.getItem("BookshopToken"),
+          },
+        }
+      );
       const data = await res.json();
       return data;
     },
   });
+
+  const handleNavigate = (item) => {
+    navigate(`/dashboard/checkout/${item._id}`, { state: { item } });
+  };
+
   if (isLoading || !user?.email) {
     return;
   }
@@ -28,7 +42,12 @@ const WishList = () => {
             <h2 className="card-title">New movie is released!</h2>
             <p>Click the button to watch on Jetflix app.</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-warning btn-sm">Delete</button>
+              <button
+                onClick={() => handleNavigate(item)}
+                className="btn btn-warning btn-sm"
+              >
+                Pay
+              </button>
             </div>
           </div>
         </div>

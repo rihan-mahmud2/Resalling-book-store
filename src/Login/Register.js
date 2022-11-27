@@ -8,7 +8,8 @@ import ButtonSpinner from "../Spinner/ButtonSpinner";
 
 const Register = () => {
   const [type, setType] = useState("");
-  const { loading, setLoading } = useContext(AuthContext);
+  const { loading, setLoading, createAccountWithGoogle } =
+    useContext(AuthContext);
   const { createUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -45,6 +46,19 @@ const Register = () => {
       .catch((err) => {
         toast(err.message);
         setLoading(false);
+      });
+  };
+
+  ///sign up with google
+  const handleLogWithGoole = () => {
+    createAccountWithGoogle()
+      .then((res) => {
+        const user = res.user;
+        setuseToken(user?.email);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -127,6 +141,12 @@ const Register = () => {
                 Sign Up
               </button>
             )}
+            <button
+              onClick={handleLogWithGoole}
+              class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Sign Up With Google
+            </button>
             <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
               Have an acount?
               <Link

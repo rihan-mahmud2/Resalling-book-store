@@ -4,6 +4,7 @@ export const saveUser = async (userInfo) => {
     method: "POST",
     headers: {
       "content-type": "application/json",
+      authorization: localStorage.getItem("BookshopToken"),
     },
     body: JSON.stringify(userInfo),
   });

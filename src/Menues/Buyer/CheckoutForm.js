@@ -1,12 +1,18 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import Payment from "./Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import CenterSpinner from "../../Spinner/CenterSpinner";
 const stripePromise = loadStripe(process.env.REACT_APP_PK);
 
 const CheckoutForm = () => {
   const bookingInfo = useLoaderData();
+
+  const navigation = useNavigation();
+  if (navigation.state === "loading") {
+    return <CenterSpinner />;
+  }
 
   return (
     <div>

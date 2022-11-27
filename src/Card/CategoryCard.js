@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import React, { useContext, useEffect, useState } from "react";
 import toast, { CheckmarkIcon } from "react-hot-toast";
 import { AuthContext } from "../context/ContextProvider";
@@ -17,7 +16,9 @@ const CategoryCard = ({ category, setBookingCategory }) => {
   } = category;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/verifiedStatus/${email}`)
+    fetch(`http://localhost:5000/verifiedStatus/${email}`, {
+      authorization: localStorage.getItem("BookshopToken"),
+    })
       .then((res) => res.json())
       .then((data) => {
         setIsVerified(data.verified);

@@ -63,7 +63,8 @@ const MyProduct = () => {
             <th>Posted Date</th>
             <th>Price</th>
             <th>Action</th>
-            <th></th>
+            <th>Run Add</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -89,6 +90,11 @@ const MyProduct = () => {
                   >
                     Advertised
                   </button>
+                )}
+              </td>
+              <td>
+                {product?.paid && (
+                  <span className="btn btn-info btn-sm">Sold</span>
                 )}
               </td>
             </tr>
