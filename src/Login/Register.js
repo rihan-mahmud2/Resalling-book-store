@@ -63,7 +63,22 @@ const Register = () => {
       .then((res) => {
         const user = res.user;
         setuseToken(user?.email);
-        navigate("/");
+        const userInfo = {
+          name: user?.displayName,
+          email: user?.email,
+          role: "buyer",
+        };
+
+        saveUser(userInfo)
+          .then((data) => {
+            console.log(user);
+            setLoading(false);
+            navigate("/");
+          })
+
+          .catch((err) => {
+            toast(err.message);
+          });
       })
       .catch((err) => {
         console.log(err);

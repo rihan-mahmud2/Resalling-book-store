@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { saveUser } from "../api/users";
 import { setuseToken } from "../api/useToken";
 import { AuthContext } from "../context/ContextProvider";
 import ButtonSpinner from "../Spinner/ButtonSpinner";
@@ -38,8 +39,24 @@ const SignUp = () => {
     createAccountWithGoogle()
       .then((res) => {
         const user = res.user;
-        setuseToken(user);
-        navigate(from, { replace: true });
+
+        setuseToken(user?.email);
+        const userInfo = {
+          name: user?.displayName,
+          email: user?.email,
+          role: "buyer",
+        };
+
+        saveUser(userInfo)
+          .then((data) => {
+            console.log(user);
+            setLoading(false);
+            navigate(from, { replace: true });
+          })
+
+          .catch((err) => {
+            toast(err.message);
+          });
       })
       .catch((err) => {
         console.log(err);
