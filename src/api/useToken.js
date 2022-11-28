@@ -2,7 +2,7 @@ export const setuseToken = async (user) => {
   const currentUser = {
     email: user?.email,
   };
-  const res = await fetch("http://localhost:5000/jwt", {
+  const res = await fetch("https://reselling-portal-server.vercel.app/jwt", {
     method: "PUT",
     headers: {
       "content-type": "application/json",

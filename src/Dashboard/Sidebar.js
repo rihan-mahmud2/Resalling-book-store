@@ -14,8 +14,7 @@ const Sidebar = () => {
     });
   }, [user]);
 
-  console.log(userRole);
-  return !user && !userRole ? (
+  return !user || !userRole ? (
     <CenterSpinner />
   ) : (
     <div className="drawer drawer-mobile">

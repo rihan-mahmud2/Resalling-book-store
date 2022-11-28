@@ -124,13 +124,38 @@ const Blog = () => {
           React vs. Angular vs. Vue?
         </div>
         <div className="collapse-content">
-          <p>
-            The main objective of unit testing is to isolate written code to
-            test and determine if it works as intended. Unit testing is an
-            important step in the development process, because if done
-            correctly, it can help detect early flaws in code which may be more
-            difficult to find in later testing stages.
-          </p>
+          <div>
+            <h1 className="text-xl text-center font-bold">What is Angular?</h1>
+            <p>
+              The React.js framework is an open-source JavaScript framework and
+              library developed by Facebook. It’s used for building interactive
+              user interfaces and web applications quickly and efficiently with
+              significantly less code than you would with vanilla JavaScript.
+            </p>
+          </div>
+          <div>
+            <h1 className="text-xl text-center font-bold">What is React?</h1>
+            <p>
+              Angular is a development platform, built on TypeScript. As a
+              platform, Angular includes: A component-based framework for
+              building scalable web applications A collection of well-integrated
+              libraries that cover a wide variety of features, including
+              routing, forms management, client-server communication, and more A
+              suite of developer tools to help you develop, build, test, and
+              update your code
+            </p>
+          </div>
+          <div>
+            <h1 className="text-xl text-center font-bold">What is Vue?</h1>
+            <p>
+              Vue.js features an incrementally adaptable architecture that
+              focuses on declarative rendering and component composition. The
+              core library is focused on the view layer only.[4] Advanced
+              features required for complex applications such as routing, state
+              management and build tooling are offered via officially maintained
+              supporting libraries and packages.[12]
+            </p>
+          </div>
         </div>
       </div>
     </div>

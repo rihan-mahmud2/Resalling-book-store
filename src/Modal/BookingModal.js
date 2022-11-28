@@ -31,7 +31,7 @@ const BookingModal = ({ category, setBookingCategory }) => {
 
     //saving the to data base
 
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://reselling-portal-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

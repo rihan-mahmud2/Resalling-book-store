@@ -41,11 +41,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.name}`, {
-            headers: {
-              authorization: localStorage.getItem("BookshopToken"),
-            },
-          }),
+          fetch(
+            `https://reselling-portal-server.vercel.app/category/${params.name}`,
+            {
+              headers: {
+                authorization: localStorage.getItem("BookshopToken"),
+              },
+            }
+          ),
       },
       {
         path: "/register",
@@ -93,7 +96,7 @@ export const router = createBrowserRouter([
           </AdminPrivateRoute>
         ),
         // loader: ({ params }) =>
-        //   fetch(`http://localhost:5000/user/${params.role}`),
+        //   fetch(`https://reselling-portal-server.vercel.app/user/${params.role}`),
       },
       {
         path: "/dashboard/all-buyer",
@@ -103,7 +106,7 @@ export const router = createBrowserRouter([
           </AdminPrivateRoute>
         ),
         // loader: ({ params }) =>
-        //   fetch(`http://localhost:5000/user/${params.role}`),
+        //   fetch(`https://reselling-portal-server.vercel.app/user/${params.role}`),
       },
       {
         path: "/dashboard/my-orders",
@@ -129,7 +132,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/payment/${params.id}`),
+          fetch(
+            `https://reselling-portal-server.vercel.app/payment/${params.id}`
+          ),
       },
     ],
   },

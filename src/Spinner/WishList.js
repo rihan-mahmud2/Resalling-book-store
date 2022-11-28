@@ -11,7 +11,7 @@ const WishList = () => {
     queryKey: ["whisList", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/whishList/${user?.email}`,
+        `https://reselling-portal-server.vercel.app/whishList/${user?.email}`,
         {
           headers: {
             authorization: localStorage.getItem("BookshopToken"),
@@ -23,9 +23,9 @@ const WishList = () => {
     },
   });
 
-  const handleNavigate = (item) => {
-    navigate(`/dashboard/checkout/${item._id}`, { wishList: { item } });
-  };
+  // const handleNavigate = (item) => {
+  //   navigate(`/dashboard/checkout/${item._id}`, { wishList: { item } });
+  // };
 
   if (isLoading || !user?.email) {
     return;
@@ -41,14 +41,7 @@ const WishList = () => {
           <div className="card-body">
             <h2 className="card-title">New movie is released!</h2>
             <p>Click the button to watch on Jetflix app.</p>
-            <div className="card-actions justify-end">
-              <button
-                onClick={() => handleNavigate(item)}
-                className="btn btn-warning btn-sm"
-              >
-                Pay
-              </button>
-            </div>
+            <div className="card-actions justify-end"></div>
           </div>
         </div>
       ))}

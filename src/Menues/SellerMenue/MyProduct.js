@@ -14,7 +14,7 @@ const MyProduct = () => {
     queryKey: ["category", user?.email],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/category?email=${user?.email}`
+        `https://reselling-portal-server.vercel.app/category?email=${user?.email}`
       );
       const data = await res.data;
       console.log(data);
@@ -27,13 +27,16 @@ const MyProduct = () => {
   }
 
   const handleAdvertised = async (id) => {
-    const res = await fetch(`http://localhost:5000/products/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-        authorization: localStorage.getItem("BookshopToken"),
-      },
-    });
+    const res = await fetch(
+      `https://reselling-portal-server.vercel.app/products/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: localStorage.getItem("BookshopToken"),
+        },
+      }
+    );
     const data = await res.json();
     if (data.acknowledged) {
       refetch();
@@ -41,12 +44,15 @@ const MyProduct = () => {
   };
 
   const handelDelete = async (id) => {
-    const res = await fetch(`http://localhost:5000/products/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: localStorage.getItem("BookshopToken"),
-      },
-    });
+    const res = await fetch(
+      `https://reselling-portal-server.vercel.app/products/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: localStorage.getItem("BookshopToken"),
+        },
+      }
+    );
     const data = await res.json();
     if (data.acknowledged) {
       refetch();

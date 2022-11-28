@@ -14,20 +14,25 @@ const AllBuyer = () => {
   } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/user/${type}`);
+      const res = await fetch(
+        `https://reselling-portal-server.vercel.app/user/${type}`
+      );
       const data = await res.json();
       return data;
     },
   });
 
   const handleVeryfy = async (id) => {
-    const res = await fetch(`http://localhost:5000/verifyUser/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-        authorization: localStorage.getItem("BookshopToken"),
-      },
-    });
+    const res = await fetch(
+      `https://reselling-portal-server.vercel.app/verifyUser/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: localStorage.getItem("BookshopToken"),
+        },
+      }
+    );
     const data = await res.json();
     if (data.acknowledged) {
       refetch();
@@ -39,12 +44,15 @@ const AllBuyer = () => {
   }
 
   const handelDelete = async (id) => {
-    const res = await fetch(`http://localhost:5000/users/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: localStorage.getItem("BookshopToken"),
-      },
-    });
+    const res = await fetch(
+      `https://reselling-portal-server.vercel.app/users/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: localStorage.getItem("BookshopToken"),
+        },
+      }
+    );
     const data = await res.json();
     if (data.acknowledged) {
       refetch();

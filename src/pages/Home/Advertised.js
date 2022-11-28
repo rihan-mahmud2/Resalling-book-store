@@ -6,7 +6,7 @@ const Advertised = () => {
   const [itmes, setItems] = useState(true);
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:5000/advertised", {
+    fetch("https://reselling-portal-server.vercel.app/advertised", {
       headers: {
         authorization: localStorage.getItem("BookshopToken"),
       },

@@ -12,7 +12,7 @@ const MyOrders = () => {
   const { data: bookings = [], isLoading } = useQuery({
     queryKey: [],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/bookings/${user?.email}`, {
+      const res = await fetch(`https://reselling-portal-server.vercel.app/bookings/${user?.email}`, {
         headers: {
           authorization: localStorage.getItem("BookshopToken"),
         },

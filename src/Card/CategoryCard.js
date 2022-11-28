@@ -20,11 +20,14 @@ const CategoryCard = ({ category, setBookingCategory }) => {
   } = category;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/verifiedStatus/${email}`, {
-      headers: {
-        authorization: localStorage.getItem("BookshopToken"),
-      },
-    })
+    fetch(
+      `https://reselling-portal-server.vercel.app/verifiedStatus/${email}`,
+      {
+        headers: {
+          authorization: localStorage.getItem("BookshopToken"),
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setIsVerified(data.verified);
@@ -36,13 +39,16 @@ const CategoryCard = ({ category, setBookingCategory }) => {
       ...category,
       userEmail: user?.email,
     };
-    const res = await fetch("http://localhost:5000/whishList", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(whishes),
-    });
+    const res = await fetch(
+      "https://reselling-portal-server.vercel.app/whishList",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(whishes),
+      }
+    );
     const data = res.json();
     data.then((result) => {
       if (result.acknowledged) {

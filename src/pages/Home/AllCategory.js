@@ -14,7 +14,7 @@ const AllCategory = () => {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-3 mx-auto w-[98%] my-10">
+    <div className="grid lg:grid-cols-2 gap-3 mx-auto w-[98%] my-10">
       {categories.map((category) => (
         <CategoryCard
           category={category}

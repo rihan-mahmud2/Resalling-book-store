@@ -1,6 +1,6 @@
 export const saveUser = async (userInfo) => {
   const res = await //now saving user ino to data base
-  fetch("http://localhost:5000/users", {
+  fetch("https://reselling-portal-server.vercel.app/users", {
     method: "POST",
     headers: {
       "content-type": "application/json",
