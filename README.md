@@ -9,3 +9,6 @@
 - This website has the tecnology like , React, react query, Express js, Mongodb, HTML, CSS
 
 If You want to have a look: [Live Website Link](https://reselling-portal.web.app/)
+
+Admin Email: rihanmahmud@gmail.com
+Password: 123456
