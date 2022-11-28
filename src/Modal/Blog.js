@@ -104,14 +104,32 @@ const Blog = () => {
         className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box"
       >
         <div className="collapse-title text-xl font-medium">
-          How does prototypical inheritance work?
+          What is a unit test? Why should we write unit tests?
         </div>
         <div className="collapse-content">
           <p>
-            prototypical work from up to down. Meaning that any property of
-            upper side of object propery can be acccessed . As the child have
-            the access of it's parent property of an object that's why it's
-            called inheritance.
+            The main objective of unit testing is to isolate written code to
+            test and determine if it works as intended. Unit testing is an
+            important step in the development process, because if done
+            correctly, it can help detect early flaws in code which may be more
+            difficult to find in later testing stages.
+          </p>
+        </div>
+      </div>
+      <div
+        tabIndex={0}
+        className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box"
+      >
+        <div className="collapse-title text-xl font-medium">
+          React vs. Angular vs. Vue?
+        </div>
+        <div className="collapse-content">
+          <p>
+            The main objective of unit testing is to isolate written code to
+            test and determine if it works as intended. Unit testing is an
+            important step in the development process, because if done
+            correctly, it can help detect early flaws in code which may be more
+            difficult to find in later testing stages.
           </p>
         </div>
       </div>

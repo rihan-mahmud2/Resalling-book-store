@@ -95,8 +95,10 @@ const MyProduct = () => {
                     )}
               </td>
               <td>
-                {product?.paid && (
+                {product?.paid ? (
                   <span className="btn btn-info btn-sm">Sold</span>
+                ) : (
+                  <span className="btn btn-primary btn-sm">Avilable</span>
                 )}
               </td>
             </tr>

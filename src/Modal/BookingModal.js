@@ -52,19 +52,19 @@ const BookingModal = ({ category, setBookingCategory }) => {
     <div className="">
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className={`modal`}>
-        <div class="relative w-full max-w-md h-full md:h-auto">
-          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div className="relative w-full max-w-md h-full md:h-auto">
+          <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <button
               onClick={() => setBookingCategory(null)}
               type="button"
               htmlFor="my-modal"
-              class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+              className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
               data-modal-toggle="authentication-modal"
             >
               <svg
                 htmlFor="my-modal"
                 aria-hidden="true"
-                class="w-5 h-5"
+                className="w-5 h-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -75,17 +75,17 @@ const BookingModal = ({ category, setBookingCategory }) => {
                   clip-rule="evenodd"
                 ></path>
               </svg>
-              <span class="sr-only">Close modal</span>
+              <span className="sr-only">Close modal</span>
             </button>
-            <div class="py-2 px-6 lg:px-8">
-              <h3 class="mb-2 text-xl font-medium text-gray-900 dark:text-white">
+            <div className="py-2 px-6 lg:px-8">
+              <h3 className="mb-2 text-xl font-medium text-gray-900 dark:text-white">
                 Book The Product
               </h3>
-              <form onSubmit={handleBook} class="space-y-2" action="#">
+              <form onSubmit={handleBook} className="space-y-2" action="#">
                 <div>
                   <label
                     htmlFor="email"
-                    class="block text-sm font-medium text-gray-900 dark:text-white"
+                    className="block text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Your email
                   </label>
@@ -94,7 +94,7 @@ const BookingModal = ({ category, setBookingCategory }) => {
                     name="email"
                     defaultValue={user?.email}
                     id="email"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="name@company.com"
                     disabled
                   />
@@ -102,7 +102,7 @@ const BookingModal = ({ category, setBookingCategory }) => {
                 <div>
                   <label
                     htmlFor="name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Your Name
                   </label>
@@ -110,15 +110,17 @@ const BookingModal = ({ category, setBookingCategory }) => {
                     type="text"
                     name="name"
                     id="name"
+                    defaultValue={user?.displayName}
+                    disabled
                     placeholder=""
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     required
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Product Name
                   </label>
@@ -129,14 +131,14 @@ const BookingModal = ({ category, setBookingCategory }) => {
                     placeholder=""
                     defaultValue={product_name}
                     disabled
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     required
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Product Price
                   </label>
@@ -147,14 +149,14 @@ const BookingModal = ({ category, setBookingCategory }) => {
                     placeholder=""
                     defaultValue={`${product_price}`}
                     disabled
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     required
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Phon Number
                   </label>
@@ -163,14 +165,14 @@ const BookingModal = ({ category, setBookingCategory }) => {
                     name="phone"
                     id="phone"
                     placeholder=""
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     required
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Meeting Venue
                   </label>
@@ -179,7 +181,7 @@ const BookingModal = ({ category, setBookingCategory }) => {
                     name="meeting_venue"
                     id="name"
                     placeholder=""
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     required
                   />
                 </div>

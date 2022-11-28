@@ -30,6 +30,12 @@ const ContextProvider = ({ children }) => {
     });
   };
 
+  const updatedProfile = (name) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+    });
+  };
+
   const logIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
@@ -68,6 +74,7 @@ const ContextProvider = ({ children }) => {
     setLoading,
     updateUser,
     createAccountWithGoogle,
+    updatedProfile,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

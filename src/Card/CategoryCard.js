@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast, { CheckmarkIcon } from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/ContextProvider";
 
 const CategoryCard = ({ category, setBookingCategory }) => {
@@ -13,7 +14,8 @@ const CategoryCard = ({ category, setBookingCategory }) => {
     purchase_year,
     location,
     postedDate,
-
+    paid,
+    usedYears,
     product_original_price,
   } = category;
 
@@ -89,43 +91,54 @@ const CategoryCard = ({ category, setBookingCategory }) => {
         </div>
       </div> */}
 
-      <div className="card card-side bg-base-100 shadow-xl">
-        <figure>
-          <img className="w-52" src={image} alt="Movie" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">{product_name}</h2>
-          <p className="text-black font-bold">Sold Price ${product_price}</p>
-          <p className="text-black font-bold">
-            Original Price ${product_original_price}
-          </p>
-          <p className="text-black font-bold">Location: {location}</p>
-          <p className="text-black font-bold">poste Date: {postedDate}</p>
-          <p className="text-black font-bold">Purchase Year: {purchase_year}</p>
-          <p className="text-black font-bold">email: {email}</p>
-          <div className="card-actions justify-end">
-            {isVerified === "yes" && <CheckmarkIcon />}
+      {paid ? (
+        ""
+      ) : (
+        <div className="card card-side bg-base-100 shadow-xl">
+          <figure>
+            <img className="w-52" src={image} alt="Movie" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">{product_name}</h2>
+            <p className="text-black font-bold">Sold Price ${product_price}</p>
+            <p className="text-black font-bold">
+              Original Price ${product_original_price}
+            </p>
+            <p className="text-black font-bold">Location: {location}</p>
+            <p className="text-black font-bold">poste Date: {postedDate}</p>
+            <p className="text-black font-bold">
+              Purchase Year: {purchase_year}
+            </p>
+            <p className="text-black font-bold">email: {email}</p>
+            <p className="text-black font-bold">Used Years: {usedYears}</p>
+            <div className="card-actions justify-end">
+              {isVerified === "yes" && <CheckmarkIcon />}
 
-            <button
-              onClick={() => handleAddToWhishList(category)}
-              className="btn inline"
-            >
-              Whislist
-            </button>
-            {category?.paid ? (
-              ""
-            ) : (
-              <label
-                htmlFor="my-modal"
-                onClick={() => setBookingCategory(category)}
-                className="btn"
+              <button
+                onClick={() => handleAddToWhishList(category)}
+                className="btn inline"
               >
-                Book Now
-              </label>
-            )}
+                Whislist
+              </button>
+              {category?.paid ? (
+                ""
+              ) : (
+                <label
+                  disabled={paid}
+                  htmlFor="my-modal"
+                  onClick={() => setBookingCategory(category)}
+                  className="btn"
+                >
+                  Book Now
+                </label>
+              )}
+              <Link to="/report" className="btn mt-3 btn-info btn-sm">
+                Report
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
