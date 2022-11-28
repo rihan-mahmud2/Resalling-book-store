@@ -10,5 +10,5 @@
 
 If You want to have a look: [Live Website Link](https://reselling-portal.web.app/)
 
-Admin Email: rihanmahmud@gmail.com
+Admin Email: pro@gmail.com
 Password: 123456
